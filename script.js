@@ -24,7 +24,7 @@ function getComputerChoice() {
 // Prompts user input
 function getHumanChoice(userinput) {
     userinput = prompt("Rock Paper or Scissors?");
-    userinput = userinput.toLowerCase(1);
+    userinput = userinput.toLowerCase();
     return userinput;
 }
 
@@ -39,18 +39,22 @@ function playRound(humanChoice, computerChoice) {
         else if (humanChoice === "rock" && computerChoice === "scissors") {
             humanScore = humanScore + 1;
             totalScore = totalScore + 1;
+            return console.log("You win! " + humanChoice + " beats " + computerChoice);
         }
         else if (humanChoice === "paper" && computerChoice === "rock") {
             humanScore = humanScore + 1;
             totalScore = totalScore + 1;
+            return console.log("You win! " + humanChoice + " beats " + computerChoice);
         }
         else if (humanChoice === "scissors" && computerChoice === "paper") {
             humanScore = humanScore + 1;
             totalScore = totalScore + 1;
+            return console.log("You win! " + humanChoice + " beats " + computerChoice);
         }
         else {
             computerScore = computerScore + 1;
             totalScore = totalScore + 1;
+            return console.log("You lose! " + computerChoice + " beats " + humanChoice);
         }
 }
 
