@@ -3,6 +3,7 @@
 let humanScore = 0;
 let computerScore = 0;
 let totalScore = 0;
+let numberOfTies = 0;
 
 // Creating random factor of Computers choice
 function getComputerChoice() {
@@ -32,10 +33,13 @@ function getHumanChoice(userinput) {
 // Plays First round off that and increments winners score
 // Announces Winner
 function playRound(humanChoice, computerChoice) {
-    if (humanChoice === "rock" && computerChoice === "scissors") {
-        humanScore = humanScore + 1;
-        totalScore = totalScore + 1;
+    if (humanChoice === computerChoice) {
+        numberOfTies = numberOfTies + 1;
     }
+        else if (humanChoice === "rock" && computerChoice === "scissors") {
+            humanScore = humanScore + 1;
+            totalScore = totalScore + 1;
+        }
         else if (humanChoice === "paper" && computerChoice === "rock") {
             humanScore = humanScore + 1;
             totalScore = totalScore + 1;
@@ -62,10 +66,10 @@ function playGame() {
     }
 
     if (humanScore > computerScore) {
-        return console.log("Out of 5 rounds you win!");
+        return console.log("Out of 5 rounds you win!    Number of Ties: " + numberOfTies);
     }
     else {
-        return console.log("Out of 5 rounds you lose!");
+        return console.log("Out of 5 rounds you lose!   Number of Ties: " + numberOfTies);
     }
     }
 
