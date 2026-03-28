@@ -20,61 +20,76 @@ function getComputerChoice() {
     return computersChoice;
 }
 
-// Creating The Human Choice
-// Prompts user input
-function getHumanChoice(userinput) {
-    userinput = prompt("Rock Paper or Scissors?");
-    userinput = userinput.toLowerCase();
-    return userinput;
-}
-
 // Play Round by Round
 // Create Function that checks Human vs Computers Choice
 // Plays First round off that and increments winners score
 // Announces Winner
 function playRound(humanChoice, computerChoice) {
+
+    if (humanScore >= 3) {
+        const endGame = document.querySelector("#endGame");
+        endGame.textContent = "You win! out of 5 rounds.";
+    }
+        else if (computerScore >= 3) {
+            const endGame = document.querySelector("#endGame");
+            endGame.textContent = "You Lose! out of 5 rounds.";
+        }
+    
     if (humanChoice === computerChoice) {
         numberOfTies = numberOfTies + 1;
     }
         else if (humanChoice === "rock" && computerChoice === "scissors") {
             humanScore = humanScore + 1;
             totalScore = totalScore + 1;
-            return console.log("You win! " + humanChoice + " beats " + computerChoice);
+            const results = document.querySelector("#results");
+            results.textContent = "You win! " + humanChoice + " beats " + computerChoice + "    Your score: " + humanScore + "  Computer score: " + computerScore;
         }
         else if (humanChoice === "paper" && computerChoice === "rock") {
             humanScore = humanScore + 1;
             totalScore = totalScore + 1;
-            return console.log("You win! " + humanChoice + " beats " + computerChoice);
+            const results = document.querySelector("#results");
+            results.textContent = "You win! " + humanChoice + " beats " + computerChoice + "    Your score: " + humanScore + "  Computer score: " + computerScore;
         }
         else if (humanChoice === "scissors" && computerChoice === "paper") {
             humanScore = humanScore + 1;
             totalScore = totalScore + 1;
-            return console.log("You win! " + humanChoice + " beats " + computerChoice);
+            const results = document.querySelector("#results");
+            results.textContent = "You win! " + humanChoice + " beats " + computerChoice + "    Your score: " + humanScore + "  Computer score: " + computerScore;
         }
         else {
             computerScore = computerScore + 1;
             totalScore = totalScore + 1;
-            return console.log("You lose! " + computerChoice + " beats " + humanChoice);
+            const results = document.querySelector("#results");
+            results.textContent = "You lose! " + computerChoice + " beats " + humanChoice + "    Your score: " + humanScore + "  Computer score: " + computerScore;
         }
 }
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        const playerChoice = e.target.id;
+        playRound(playerChoice, getComputerChoice());
+    });
+});
 
 
 
 // Creating playGame Function
 // Consists of 5 rounds and outputs winner at end
-function playGame() {
-    while (totalScore !== 5) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-    }
+// function playGame() {
+//     while (totalScore !== 5) {
+//         const humanSelection = getHumanChoice();
+//         const computerSelection = getComputerChoice();
+//         playRound(humanSelection, computerSelection);
+//     }
 
-    if (humanScore > computerScore) {
-        return console.log("Out of 5 rounds you win!    Number of Ties: " + numberOfTies);
-    }
-    else {
-        return console.log("Out of 5 rounds you lose!   Number of Ties: " + numberOfTies);
-    }
-    }
+//     if (humanScore > computerScore) {
+//         return console.log("Out of 5 rounds you win!    Number of Ties: " + numberOfTies);
+//     }
+//     else {
+//         return console.log("Out of 5 rounds you lose!   Number of Ties: " + numberOfTies);
+//     }
+//     }
 
-    playGame();
+    playRound();
